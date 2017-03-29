@@ -1,10 +1,10 @@
-## MDN Reference Search
+## NPM Package Search
 
-A WebExtension that uses the keyword `mdn` to trigger a search of the CSS and JavaScript References on MDN.
+A WebExtension that uses the keyword `npm` to trigger a search of the packages in the NPM registry.
 
-<img width="1106" alt="screen shot 2017-03-17 at 2 33 25 pm" src="https://cloud.githubusercontent.com/assets/2134/24063861/afe2d684-0b1e-11e7-88d9-261cce41924e.png">
+<img width="1271" alt="screen shot 2017-03-29 at 3 57 47 pm" src="https://cloud.githubusercontent.com/assets/2134/24476349/9a763bbe-1498-11e7-95f4-095f103cc9b5.png">
 
-![screen shot 2017-03-17 at 2 31 08 pm](https://cloud.githubusercontent.com/assets/2134/24063803/68a0a7ec-0b1e-11e7-89c0-8da72dae19f2.png)
+![screen shot 2017-03-29 at 3 58 29 pm](https://cloud.githubusercontent.com/assets/2134/24476346/98b8a334-1498-11e7-84c2-a14160e47edf.png)
 
 ### Development
 
@@ -17,8 +17,7 @@ yarn run build:watch
 
 Here are some example results from the MDN Search.
 
-* JavaScript search: https://developer.mozilla.org/en-US/search.json?q=assign&topic=css&topic=js
-* CSS search: https://developer.mozilla.org/en-US/search.json?q=margin&topic=css&topic=js
+* yarn-lock search: https://registry.npmjs.org/-/v1/search/?text=yarn-lock
 
 Follow the instructions for developing [WebExtensions](https://developer.mozilla.org/en-US/Add-ons/WebExtensions).
 
