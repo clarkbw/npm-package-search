@@ -63,48 +63,58 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__highlight__ = __webpack_require__(1);
-/* harmony export (immutable) */ __webpack_exports__["b"] = handleInputChanged;
-/* harmony export (immutable) */ __webpack_exports__["c"] = handleInputEntered;
-const BASE_URL = `https://developer.mozilla.org`;
-const SEARCH_API_URL = `${BASE_URL}/en-US/search.json?topic=css&topic=js&q=`;
-const SEARCH_DEFAULT_URL = `${BASE_URL}/en-US/search?q=`;
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.defaultSuggestion = exports.SEARCH_DEFAULT_URL = exports.SEARCH_API_URL = undefined;
+exports.handleInputChanged = handleInputChanged;
+exports.handleInputEntered = handleInputEntered;
 
-const defaultSuggestion = {
-  description: `Search MDN (e.g. "margin" | "splice")`
+var _highlight = __webpack_require__(2);
+
+var _highlight2 = _interopRequireDefault(_highlight);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var BASE_URL = 'https://registry.npmjs.org';
+var MAX_RESULTS = 5;
+var SEARCH_API_URL = exports.SEARCH_API_URL = BASE_URL + '/-/v1/search/?size=' + MAX_RESULTS + '&text=';
+var SEARCH_DEFAULT_URL = exports.SEARCH_DEFAULT_URL = 'https://www.npmjs.com/search?q=';
+
+var defaultSuggestion = exports.defaultSuggestion = {
+  description: 'Search NPM (e.g. "react" | "webpack")'
 };
-/* harmony export (immutable) */ __webpack_exports__["a"] = defaultSuggestion;
-
 
 function handleInputChanged(text, addSuggestions) {
-  const headers = new Headers({ Accept: 'application/json' });
-  const init = { method: 'GET', headers };
-  const q = encodeURIComponent(text);
-  const url = `${SEARCH_API_URL}${q}`;
-  const request = new Request(url, init);
+  var headers = new Headers({ Accept: 'application/json' });
+  var init = { method: 'GET', headers: headers };
+  var q = encodeURIComponent(text);
+  var url = '' + SEARCH_API_URL + q;
+  var request = new Request(url, init);
+  var response = handleResponse.bind(undefined, text);
 
-  fetch(request).then(handleResponse).then(addSuggestions);
+  fetch(request).then(response).then(addSuggestions);
 }
 
-function handleResponse(response) {
-  return new Promise(resolve => {
-    response.json().then(json => {
-      const pages = json.documents.filter(doc => doc.tags.includes('Reference')).slice(0, 5);
+function handleResponse(text, response) {
+  return new Promise(function (resolve) {
+    response.json().then(function (json) {
+      var objects = json.objects.slice(0, MAX_RESULTS);
 
-      return resolve(pages.map(page => {
+      return resolve(objects.map(function (pkg) {
         return {
-          content: page.url,
-          description: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__highlight__["a" /* default */])(page.title, json.query)
+          content: pkg.package.links.npm,
+          description: (0, _highlight2.default)(pkg.package.name, text)
         };
       }));
     });
@@ -112,60 +122,65 @@ function handleResponse(response) {
 }
 
 function handleInputEntered(text, disposition) {
-  const url = text.startsWith('https://') ? text : `${SEARCH_DEFAULT_URL}${text}`;
+  var url = text.startsWith('https://') ? text : '' + SEARCH_DEFAULT_URL + text;
 
   switch (disposition) {
     case 'currentTab':
-      browser.tabs.update({ url });
-      break;
+      return chrome.tabs.update({ url: url });
     case 'newForegroundTab':
-      browser.tabs.create({ url });
-      break;
+      return chrome.tabs.create({ url: url });
     case 'newBackgroundTab':
-      browser.tabs.create({ url, active: false });
-      break;
+      return chrome.tabs.create({ url: url, active: false });
   }
 }
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* unused harmony export chromeHighlightMatch */
-/* unused harmony export firefoxHighlightMatch */
-const isChrome = typeof browser === 'undefined';
+
+
+var _omnibox = __webpack_require__(0);
+
+// Provide help text to the user.
+chrome.omnibox.setDefaultSuggestion(_omnibox.defaultSuggestion);
+
+// Update the suggestions whenever the input is changed.
+chrome.omnibox.onInputChanged.addListener(_omnibox.handleInputChanged);
+
+// Open the page based on how the user clicks on a suggestion.
+chrome.omnibox.onInputEntered.addListener(_omnibox.handleInputEntered);
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.chromeHighlightMatch = chromeHighlightMatch;
+exports.firefoxHighlightMatch = firefoxHighlightMatch;
+var isChrome = typeof browser === 'undefined';
 
 // Currently Firefox auto-highlights but Chrome requires this XML syntax
-function chromeHighlightMatch(text = '', match = '') {
-  return text.replace(match, `<match>${match}</match>`);
+function chromeHighlightMatch() {
+  var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  var match = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+  return text.replace(match, '<match>' + match + '</match>');
 }
 
 function firefoxHighlightMatch(text) {
   return text;
 }
 
-const highlight = isChrome ? chromeHighlightMatch : firefoxHighlightMatch;
+var highlight = isChrome ? chromeHighlightMatch : firefoxHighlightMatch;
 
-/* harmony default export */ __webpack_exports__["a"] = highlight;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__omnibox__ = __webpack_require__(0);
-
-
-// Provide help text to the user.
-chrome.omnibox.setDefaultSuggestion(__WEBPACK_IMPORTED_MODULE_0__omnibox__["a" /* defaultSuggestion */]);
-
-// Update the suggestions whenever the input is changed.
-chrome.omnibox.onInputChanged.addListener(__WEBPACK_IMPORTED_MODULE_0__omnibox__["b" /* handleInputChanged */]);
-
-// Open the page based on how the user clicks on a suggestion.
-chrome.omnibox.onInputEntered.addListener(__WEBPACK_IMPORTED_MODULE_0__omnibox__["c" /* handleInputEntered */]);
+exports.default = highlight;
 
 /***/ })
 /******/ ]);

@@ -1,11 +1,12 @@
-const BASE_URL = `https://developer.mozilla.org`;
-export const SEARCH_API_URL = `${BASE_URL}/en-US/search.json?topic=css&topic=js&q=`;
-export const SEARCH_DEFAULT_URL = `${BASE_URL}/en-US/search?q=`;
+const BASE_URL = `https://registry.npmjs.org`;
+const MAX_RESULTS = 5;
+export const SEARCH_API_URL = `${BASE_URL}/-/v1/search/?size=${MAX_RESULTS}&text=`;
+export const SEARCH_DEFAULT_URL = `https://www.npmjs.com/search?q=`;
 
 import highlight from './highlight';
 
 export const defaultSuggestion = {
-  description: `Search MDN (e.g. "margin" | "splice")`
+  description: `Search NPM (e.g. "react" | "webpack")`
 };
 
 export function handleInputChanged(text, addSuggestions) {
@@ -14,22 +15,21 @@ export function handleInputChanged(text, addSuggestions) {
   const q = encodeURIComponent(text);
   const url = `${SEARCH_API_URL}${q}`;
   const request = new Request(url, init);
+  const response = handleResponse.bind(undefined, text);
 
-  fetch(request).then(handleResponse).then(addSuggestions);
+  fetch(request).then(response).then(addSuggestions);
 }
 
-function handleResponse(response) {
+function handleResponse(text, response) {
   return new Promise(resolve => {
     response.json().then(json => {
-      const pages = json.documents
-        .filter(doc => doc.tags.includes('Reference'))
-        .slice(0, 5);
+      const objects = json.objects.slice(0, MAX_RESULTS);
 
       return resolve(
-        pages.map(page => {
+        objects.map(pkg => {
           return {
-            content: page.url,
-            description: highlight(page.title, json.query)
+            content: pkg.package.links.npm,
+            description: highlight(pkg.package.name, text)
           };
         })
       );
