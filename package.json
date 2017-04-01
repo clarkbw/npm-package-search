@@ -1,8 +1,8 @@
 {
-  "name": "mdn-code-search",
+  "name": "npm-package-search",
   "version": "1.0.0",
-  "description": "Search MDN for JS and CSS from the URL bar",
-  "main": "background.js",
+  "description": "Search NPM for JavaScript packages from the URL bar",
+  "main": "extension/background.js",
   "repository": "git@github.com:clarkbw/mdn-reference-search.git",
   "author": "Bryan Clark <clarkbw@gmail.com>",
   "license": "MPL-2.0",
@@ -21,7 +21,8 @@
     "build:watch": "webpack --watch",
     "prettier": "prettier --write --single-quote --print-width 80 \"src/*.js\" \"src/**/*.js\"",
     "test": "jest",
-    "coverage": "yarn test -- --coverage"
+    "coverage": "yarn test -- --coverage",
+    "zip": "(cd extension && zip -r ../extension.zip .)"
   },
   "jest": {
     "setupFiles":[ "./__setups__/chrome.js"],
