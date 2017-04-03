@@ -20,7 +20,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "prepush": "yarn test",
+    "prepush": "yarn build && yarn test",
     "build": "webpack",
     "build:watch": "webpack --watch",
     "test": "jest",
