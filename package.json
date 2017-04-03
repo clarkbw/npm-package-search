@@ -37,6 +37,7 @@
     "setupFiles": [
       "./__setups__/chrome.js"
     ],
+    "coverageDirectory": "./coverage/",
     "bail": true,
     "rootDir": "src",
     "globals": {
