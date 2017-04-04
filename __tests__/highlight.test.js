@@ -1,4 +1,4 @@
-import { chromeHighlightMatch, firefoxHighlightMatch } from '../highlight';
+import { chromeHighlightMatch, firefoxHighlightMatch } from '../src/highlight';
 
 describe('highlight:chrome', () => {
   it('should return the text matched', () => {

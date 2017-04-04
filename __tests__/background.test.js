@@ -1,11 +1,11 @@
-import background from '../background';
+import background from '../src/background';
 import {
   defaultSuggestion,
   handleInputChanged,
   handleInputEntered,
   SEARCH_API_URL,
   SEARCH_DEFAULT_URL
-} from '../omnibox';
+} from '../src/omnibox';
 
 describe('background', () => {
   it('should have set a default suggestion', () => {
