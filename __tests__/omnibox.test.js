@@ -29,7 +29,7 @@ describe("omnibox", () => {
           ]
         })
       );
-      const query = "query";
+
       const callback = function(results) {
         expect(results).toHaveLength(1);
         expect(results[0]).toMatchObject({
@@ -38,7 +38,29 @@ describe("omnibox", () => {
         });
         done();
       };
-      handleInputChanged(query, callback);
+      handleInputChanged("query", callback);
+      expect(fetch).toHaveBeenCalled();
+    });
+    it("should return limited results", done => {
+      const objects = new Array(10).fill({
+        package: {
+          name: "x",
+          links: {
+            npm: "https://x"
+          }
+        }
+      });
+
+      fetch.mockResponse(
+        JSON.stringify({
+          objects: objects
+        })
+      );
+      const callback = function(results) {
+        expect(results).toHaveLength(5);
+        done();
+      };
+      handleInputChanged("query", callback);
       expect(fetch).toHaveBeenCalled();
     });
   });
