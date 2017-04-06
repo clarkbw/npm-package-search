@@ -28,14 +28,14 @@
     "zip": "(cd extension && zip -r ../extension.zip .)"
   },
   "lint-staged": {
-    "src/**/*.js": [
+    "./**/*.js": [
       "prettier --write --single-quote --print-width 80",
       "git add"
     ]
   },
   "jest": {
     "setupFiles": [
-      "./src/__setups__/chrome.js"
+      "./__setups__/chrome.js"
     ],
     "coverageDirectory": "./coverage/",
     "bail": true,
