@@ -14,6 +14,7 @@
     "babel-preset-es2015": "^6.24.0",
     "husky": "^0.13.3",
     "jest": "^19.0.2",
+    "jest-fetch-mock": "^1.0.8",
     "lint-staged": "^3.4.0",
     "prettier": "^0.22.0",
     "webpack": "^2.2.1"
@@ -35,7 +36,8 @@
   },
   "jest": {
     "setupFiles": [
-      "./__setups__/chrome.js"
+      "./__setups__/chrome.js",
+      "./__setups__/fetch.js"
     ],
     "coverageDirectory": "./coverage/",
     "bail": true,
