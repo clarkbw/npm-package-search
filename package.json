@@ -28,7 +28,7 @@
     "zip": "(cd extension && zip -r ../extension.zip .)"
   },
   "lint-staged": {
-    "src/**/*.js": [
+    "./**/*.js": [
       "prettier --write --single-quote --print-width 80",
       "git add"
     ]
