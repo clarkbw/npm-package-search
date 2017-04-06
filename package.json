@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Search NPM for JavaScript packages from the URL bar",
   "main": "extension/background.js",
-  "repository": "git@github.com:clarkbw/mdn-reference-search.git",
+  "repository": "https://github.com/clarkbw/npm-package-search.git",
   "author": "Bryan Clark <clarkbw@gmail.com>",
   "license": "MPL-2.0",
   "devDependencies": {
@@ -20,7 +20,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "prepush": "yarn test",
+    "prepush": "yarn build && yarn test",
     "build": "webpack",
     "build:watch": "webpack --watch",
     "test": "jest",
@@ -35,11 +35,10 @@
   },
   "jest": {
     "setupFiles": [
-      "./__setups__/chrome.js"
+      "./src/__setups__/chrome.js"
     ],
     "coverageDirectory": "./coverage/",
     "bail": true,
-    "rootDir": "src",
     "globals": {
       "chrome": {
         "tabs": {},

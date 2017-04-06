@@ -4,7 +4,7 @@ import {
   handleInputEntered,
   SEARCH_API_URL,
   SEARCH_DEFAULT_URL
-} from '../omnibox';
+} from '../src/omnibox';
 
 describe('omnibox', () => {
   it('should return a default suggestion', () => {
