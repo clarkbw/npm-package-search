@@ -21,13 +21,6 @@ Here are some example results from the MDN Search.
 
 Follow the instructions for developing [WebExtensions](https://developer.mozilla.org/en-US/Add-ons/WebExtensions).
 
-When you're ready to make your PR, be sure to run the following so your code is automatically formatted.
-
-```bash
-yarn run prettier
-yarn run build
-```
-
 ### License
 
 MPL v2
