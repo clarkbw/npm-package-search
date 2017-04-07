@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -80,7 +80,7 @@ exports.defaultSuggestion = exports.SEARCH_DEFAULT_URL = exports.SEARCH_API_URL 
 exports.handleInputChanged = handleInputChanged;
 exports.handleInputEntered = handleInputEntered;
 
-var _highlight = __webpack_require__(1);
+var _highlight = __webpack_require__(2);
 
 var _highlight2 = _interopRequireDefault(_highlight);
 
@@ -141,6 +141,24 @@ function handleInputEntered(text, disposition) {
 "use strict";
 
 
+var _omnibox = __webpack_require__(0);
+
+// Provide help text to the user.
+chrome.omnibox.setDefaultSuggestion(_omnibox.defaultSuggestion);
+
+// Update the suggestions whenever the input is changed.
+chrome.omnibox.onInputChanged.addListener(_omnibox.handleInputChanged);
+
+// Open the page based on how the user clicks on a suggestion.
+chrome.omnibox.onInputEntered.addListener(_omnibox.handleInputEntered);
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -163,24 +181,6 @@ function firefoxHighlightMatch(text) {
 var highlight = isChrome ? chromeHighlightMatch : firefoxHighlightMatch;
 
 exports.default = highlight;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _omnibox = __webpack_require__(0);
-
-// Provide help text to the user.
-chrome.omnibox.setDefaultSuggestion(_omnibox.defaultSuggestion);
-
-// Update the suggestions whenever the input is changed.
-chrome.omnibox.onInputChanged.addListener(_omnibox.handleInputChanged);
-
-// Open the page based on how the user clicks on a suggestion.
-chrome.omnibox.onInputEntered.addListener(_omnibox.handleInputEntered);
 
 /***/ })
 /******/ ]);
