@@ -68,53 +68,49 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__highlight__ = __webpack_require__(2);
+/* harmony export (immutable) */ __webpack_exports__["b"] = handleInputChanged;
+/* harmony export (immutable) */ __webpack_exports__["c"] = handleInputEntered;
+const BASE_URL = `https://registry.npmjs.org`;
+const MAX_RESULTS = 5;
+const SEARCH_API_URL = `${BASE_URL}/-/v1/search/?size=${MAX_RESULTS}&text=`;
+/* unused harmony export SEARCH_API_URL */
+
+const SEARCH_DEFAULT_URL = `https://www.npmjs.com/search?q=`;
+/* unused harmony export SEARCH_DEFAULT_URL */
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.defaultSuggestion = exports.SEARCH_DEFAULT_URL = exports.SEARCH_API_URL = undefined;
-exports.handleInputChanged = handleInputChanged;
-exports.handleInputEntered = handleInputEntered;
 
-var _highlight = __webpack_require__(2);
 
-var _highlight2 = _interopRequireDefault(_highlight);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var BASE_URL = 'https://registry.npmjs.org';
-var MAX_RESULTS = 5;
-var SEARCH_API_URL = exports.SEARCH_API_URL = BASE_URL + '/-/v1/search/?size=' + MAX_RESULTS + '&text=';
-var SEARCH_DEFAULT_URL = exports.SEARCH_DEFAULT_URL = 'https://www.npmjs.com/search?q=';
-
-var defaultSuggestion = exports.defaultSuggestion = {
-  description: 'Search NPM (e.g. "react" | "webpack")'
+const defaultSuggestion = {
+  description: `Search NPM (e.g. "react" | "webpack")`
 };
+/* harmony export (immutable) */ __webpack_exports__["a"] = defaultSuggestion;
+
 
 function handleInputChanged(text, addSuggestions) {
-  var headers = new Headers({ Accept: 'application/json' });
-  var init = { method: 'GET', headers: headers };
-  var q = encodeURIComponent(text);
-  var url = '' + SEARCH_API_URL + q;
-  var request = new Request(url, init);
-  var response = handleResponse.bind(undefined, text);
+  const headers = new Headers({ Accept: 'application/json' });
+  const init = { method: 'GET', headers };
+  const q = encodeURIComponent(text);
+  const url = `${SEARCH_API_URL}${q}`;
+  const request = new Request(url, init);
+  const response = handleResponse.bind(undefined, text);
 
   fetch(request).then(response).then(addSuggestions);
 }
 
 function handleResponse(text, response) {
-  return new Promise(function (resolve) {
-    response.json().then(function (json) {
-      var objects = json.objects.slice(0, MAX_RESULTS);
+  return new Promise(resolve => {
+    response.json().then(json => {
+      const objects = json.objects.slice(0, MAX_RESULTS);
 
-      return resolve(objects.map(function (pkg) {
+      return resolve(objects.map(pkg => {
         return {
           content: pkg.package.links.npm,
-          description: (0, _highlight2.default)(pkg.package.name, text)
+          description: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__highlight__["a" /* default */])(pkg.package.name, text)
         };
       }));
     });
@@ -122,65 +118,60 @@ function handleResponse(text, response) {
 }
 
 function handleInputEntered(text, disposition) {
-  var url = text.startsWith('https://') ? text : '' + SEARCH_DEFAULT_URL + text;
+  const url = text.startsWith('https://') ? text : `${SEARCH_DEFAULT_URL}${text}`;
 
   switch (disposition) {
     case 'currentTab':
-      return chrome.tabs.update({ url: url });
+      return chrome.tabs.update({ url });
     case 'newForegroundTab':
-      return chrome.tabs.create({ url: url });
+      return chrome.tabs.create({ url });
     case 'newBackgroundTab':
-      return chrome.tabs.create({ url: url, active: false });
+      return chrome.tabs.create({ url, active: false });
   }
 }
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__omnibox__ = __webpack_require__(0);
 
-
-var _omnibox = __webpack_require__(0);
 
 // Provide help text to the user.
-chrome.omnibox.setDefaultSuggestion(_omnibox.defaultSuggestion);
+chrome.omnibox.setDefaultSuggestion(__WEBPACK_IMPORTED_MODULE_0__omnibox__["a" /* defaultSuggestion */]);
 
 // Update the suggestions whenever the input is changed.
-chrome.omnibox.onInputChanged.addListener(_omnibox.handleInputChanged);
+chrome.omnibox.onInputChanged.addListener(__WEBPACK_IMPORTED_MODULE_0__omnibox__["b" /* handleInputChanged */]);
 
 // Open the page based on how the user clicks on a suggestion.
-chrome.omnibox.onInputEntered.addListener(_omnibox.handleInputEntered);
+chrome.omnibox.onInputEntered.addListener(__WEBPACK_IMPORTED_MODULE_0__omnibox__["c" /* handleInputEntered */]);
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.chromeHighlightMatch = chromeHighlightMatch;
-exports.firefoxHighlightMatch = firefoxHighlightMatch;
-var isChrome = typeof browser === 'undefined';
+/* unused harmony export chromeHighlightMatch */
+/* unused harmony export firefoxHighlightMatch */
+const isChrome = typeof browser === 'undefined';
 
 // Currently Firefox auto-highlights but Chrome requires this XML syntax
 function chromeHighlightMatch() {
-  var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  var match = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  let text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  let match = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
-  return text.replace(match, '<match>' + match + '</match>');
+  return text.replace(match, `<match>${match}</match>`);
 }
 
 function firefoxHighlightMatch(text) {
   return text;
 }
 
-var highlight = isChrome ? chromeHighlightMatch : firefoxHighlightMatch;
+const highlight = isChrome ? chromeHighlightMatch : firefoxHighlightMatch;
 
-exports.default = highlight;
+/* harmony default export */ __webpack_exports__["a"] = (highlight);
 
 /***/ })
 /******/ ]);
