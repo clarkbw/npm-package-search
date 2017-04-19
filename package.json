@@ -9,7 +9,7 @@
   "devDependencies": {
     "babel-core": "^6.24.0",
     "babel-jest": "^19.0.0",
-    "babel-loader": "^6.4.0",
+    "babel-loader": "^7.0.0-beta.1",
     "babel-preset-env": "^1.2.1",
     "babel-preset-es2015": "^6.24.0",
     "husky": "^0.13.3",
@@ -21,15 +21,27 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "prepush": "yarn build && yarn test",
-    "build": "webpack",
+    "prepush": "yarn test",
+    "build": "webpack && yarn zip",
     "build:watch": "webpack --watch",
     "test": "jest",
     "coverage": "yarn test -- --coverage",
     "zip": "(cd extension && zip -r ../extension.zip .)"
   },
   "lint-staged": {
-    "./**/*.js": [
+    "src/*.js": [
+      "prettier --write --single-quote --print-width 80",
+      "git add"
+    ],
+    "__tests__/**/*.js": [
+      "prettier --write --single-quote --print-width 80",
+      "git add"
+    ],
+    "__setups__/**/*.js": [
+      "prettier --write --single-quote --print-width 80",
+      "git add"
+    ],
+    "webpack.config.js": [
       "prettier --write --single-quote --print-width 80",
       "git add"
     ]

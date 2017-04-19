@@ -1,3 +1,21 @@
 {
-  "presets": ["es2015"]
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 1 Chrome versions",
+            "last 1 Firefox versions"
+          ]
+        },
+        "modules": false
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "presets": ["env"]
+    }
+  }
 }
