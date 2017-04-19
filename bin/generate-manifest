@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+const { resolve } = require('path');
+const { writeFileSync } = require('fs');
+const pkg = require('../package.json');
+
+const manifest = Object.assign(pkg.manifest, {
+  'author': pkg.author,
+  'version': pkg.version,
+  'description': pkg.description,
+  'homepage_url': pkg.homepage
+});
+
+const write = resolve(__dirname, '..', 'extension', 'manifest.json');
+writeFileSync(write, JSON.stringify(manifest, null, '  '));

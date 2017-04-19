@@ -1,9 +1,6 @@
 {
   "name": "NPM Package Search",
   "short_name": "NPM Search",
-  "description" : "To use, type 'npm' plus your search term into the url bar.",
-  "homepage_url": "https://github.com/clarkbw/npm-package-search",
-  "version": "1.0",
   "applications": {
     "gecko": {
       "strict_min_version": "52.0a1"
@@ -14,11 +11,19 @@
     "64": "icons/npm-64.png"
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "background.js"
+    ]
   },
-  "omnibox": { "keyword" : "npm" },
+  "omnibox": {
+    "keyword": "npm"
+  },
   "manifest_version": 2,
   "permissions": [
     "https://registry.npmjs.org/"
-  ]
+  ],
+  "author": "Bryan Clark <clarkbw@gmail.com> (http://twitter.com/clarkbw)",
+  "version": "1.0.0",
+  "description": "To use, type 'npm' plus your search term into the url bar.",
+  "homepage_url": "https://github.com/clarkbw/npm-package-search"
 }
