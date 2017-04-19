@@ -1,10 +1,14 @@
 {
   "name": "npm-package-search",
   "version": "1.0.0",
-  "description": "Search NPM for JavaScript packages from the URL bar",
+  "description": "To use, type 'npm' plus your search term into the url bar.",
   "main": "extension/background.js",
   "repository": "https://github.com/clarkbw/npm-package-search.git",
-  "author": "Bryan Clark <clarkbw@gmail.com>",
+  "bugs": {
+    "url" : "https://github.com/clarkbw/npm-package-search/issues"
+  },
+  "homepage": "https://github.com/clarkbw/npm-package-search",
+  "author": "Bryan Clark <clarkbw@gmail.com> (http://twitter.com/clarkbw)",
   "license": "MPL-2.0",
   "devDependencies": {
     "babel-core": "^6.24.0",
@@ -22,12 +26,33 @@
   "scripts": {
     "precommit": "lint-staged",
     "prepush": "yarn test",
-    "build": "webpack && yarn zip",
+    "build": "webpack && ./bin/generate-manifest && yarn zip",
     "build:watch": "webpack --watch",
     "test": "jest",
     "coverage": "yarn test -- --coverage",
     "prettier": "prettier --write --single-quote --print-width 80 ./src/**/*.js ./__tests__/**/*.js ./__setups__/**/*.js",
     "zip": "(cd extension && zip -r ../extension.zip .)"
+  },
+  "manifest": {
+    "name": "NPM Package Search",
+    "short_name": "NPM Search",
+    "applications": {
+      "gecko": {
+        "strict_min_version": "52.0a1"
+      }
+    },
+    "icons": {
+      "16": "icons/npm-16.png",
+      "64": "icons/npm-64.png"
+    },
+    "background": {
+      "scripts": ["background.js"]
+    },
+    "omnibox": { "keyword" : "npm" },
+    "manifest_version": 2,
+    "permissions": [
+      "https://registry.npmjs.org/"
+    ]
   },
   "lint-staged": {
     "src/*.js": [
