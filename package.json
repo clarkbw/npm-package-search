@@ -1,11 +1,11 @@
 {
   "name": "npm-package-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "To use, type 'npm' plus your search term into the url bar.",
   "main": "extension/background.js",
   "repository": "https://github.com/clarkbw/npm-package-search.git",
   "bugs": {
-    "url" : "https://github.com/clarkbw/npm-package-search/issues"
+    "url": "https://github.com/clarkbw/npm-package-search/issues"
   },
   "homepage": "https://github.com/clarkbw/npm-package-search",
   "author": "Bryan Clark <clarkbw@gmail.com> (http://twitter.com/clarkbw)",
@@ -47,9 +47,13 @@
       "64": "icons/npm-64.png"
     },
     "background": {
-      "scripts": ["background.js"]
+      "scripts": [
+        "background.js"
+      ]
     },
-    "omnibox": { "keyword" : "npm" },
+    "omnibox": {
+      "keyword": "npm"
+    },
     "manifest_version": 2,
     "permissions": [
       "https://registry.npmjs.org/"
