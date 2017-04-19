@@ -26,6 +26,7 @@
     "build:watch": "webpack --watch",
     "test": "jest",
     "coverage": "yarn test -- --coverage",
+    "prettier": "prettier --write --single-quote --print-width 80 ./src/**/*.js ./__tests__/**/*.js ./__setups__/**/*.js",
     "zip": "(cd extension && zip -r ../extension.zip .)"
   },
   "lint-staged": {
