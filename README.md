@@ -5,6 +5,8 @@
 [Chrome](https://chrome.google.com/webstore/detail/npm-package-search/opeblfahbafpdgaiadfdcefgdhegdnch) | [Firefox](wawawa)
 ---|---
 
+![](http://g.recordit.co/3TKjLGuQJP.gif)
+
 A WebExtension that uses the keyword `npm` to trigger a search of the packages in the NPM registry.
 
 <img width="1271" alt="screen shot 2017-03-29 at 3 57 47 pm" src="https://cloud.githubusercontent.com/assets/2134/24476349/9a763bbe-1498-11e7-95f4-095f103cc9b5.png">
