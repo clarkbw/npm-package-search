@@ -1,6 +1,6 @@
 {
   "name": "npm-package-search",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "To use, type 'npm' plus your search term into the url bar.",
   "main": "extension/background.js",
   "repository": "https://github.com/clarkbw/npm-package-search.git",
