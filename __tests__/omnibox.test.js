@@ -68,32 +68,30 @@ describe('omnibox', () => {
   describe('handleInputEntered', () => {
     it('should open in the current tab', () => {
       const query = 'query';
-      expect(handleInputEntered(query, 'currentTab')).toBe(
-        `${SEARCH_DEFAULT_URL}${query}`
-      );
-      expect(chrome.tabs.update).toHaveBeenCalled();
+      handleInputEntered(query, 'currentTab');
+      expect(chrome.tabs.update).toHaveBeenCalledWith({
+        url: `${SEARCH_DEFAULT_URL}${query}`
+      });
     });
 
     it('should open in the current tab', () => {
-      expect(handleInputEntered(SEARCH_API_URL, 'currentTab')).toBe(
-        SEARCH_API_URL
-      );
-      expect(chrome.tabs.update).toHaveBeenCalled();
+      handleInputEntered(SEARCH_API_URL, 'currentTab');
+      expect(chrome.tabs.update).toHaveBeenCalledWith({ url: SEARCH_API_URL });
     });
 
     it('should open in a new foreground tab', () => {
-      expect(handleInputEntered(SEARCH_API_URL, 'newForegroundTab')).toEqual({
+      handleInputEntered(SEARCH_API_URL, 'newForegroundTab');
+      expect(chrome.tabs.create).toHaveBeenCalledWith({
         url: SEARCH_API_URL
       });
-      expect(chrome.tabs.create).toHaveBeenCalled();
     });
 
     it('should open in a new foreground tab', () => {
-      expect(handleInputEntered(SEARCH_API_URL, 'newBackgroundTab')).toEqual({
+      handleInputEntered(SEARCH_API_URL, 'newBackgroundTab');
+      expect(chrome.tabs.create).toHaveBeenCalledWith({
         url: SEARCH_API_URL,
         active: false
       });
-      expect(chrome.tabs.create).toHaveBeenCalled();
     });
   });
 });
