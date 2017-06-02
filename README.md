@@ -2,7 +2,7 @@
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/clarkbw/npm-package-search.svg)](https://greenkeeper.io/)
 
-[Chrome](https://chrome.google.com/webstore/detail/npm-package-search/opeblfahbafpdgaiadfdcefgdhegdnch) | [Firefox](wawawa)
+[Chrome](https://chrome.google.com/webstore/detail/npm-package-search/opeblfahbafpdgaiadfdcefgdhegdnch) | [Firefox](https://addons.mozilla.org/addon/npm-package-search/)
 ---|---
 
 ![](http://g.recordit.co/3TKjLGuQJP.gif)
