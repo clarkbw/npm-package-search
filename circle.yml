@@ -1,6 +1,4 @@
 machine:
-  node:
-    version: 7.0
   environment:
     PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
 
