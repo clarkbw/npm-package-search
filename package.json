@@ -31,7 +31,6 @@
     "build": "webpack && ./bin/generate-manifest && yarn zip",
     "build:watch": "webpack --watch",
     "test": "jest",
-    "coverage": "yarn test -- --coverage",
     "prettier": "prettier --write --single-quote --print-width 80  \"{src,bin,__{tests,setups}__}/**/*.js\" webpack.config.js",
     "release": "release",
     "zip": "(cd extension && zip -r ../extension.zip .)"
@@ -77,6 +76,7 @@
       "./__setups__/fetch.js"
     ],
     "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
     "bail": true
   }
 }
