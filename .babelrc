@@ -15,7 +15,17 @@
   ],
   "env": {
     "test": {
-      "presets": ["env"]
+      "presets": [
+        [
+          "env",
+          {
+            "targets": {
+              "node": "current"
+            },
+            "modules": "commonjs"
+          }
+        ]
+      ]
     }
   }
 }
