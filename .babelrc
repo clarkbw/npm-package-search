@@ -15,7 +15,20 @@
   ],
   "env": {
     "test": {
-      "presets": ["env"]
+      "presets": [
+        [
+          "env",
+          {
+            "targets": {
+              "node": "current"
+            },
+            "modules": false
+          }
+        ]
+      ],
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ]
     }
   }
 }
