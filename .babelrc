@@ -19,13 +19,15 @@
         [
           "env",
           {
-            "debug": true,
             "targets": {
               "node": "current"
             },
-            "modules": "commonjs"
+            "modules": false
           }
         ]
+      ],
+      "plugins": [
+        "transform-es2015-modules-commonjs"
       ]
     }
   }
