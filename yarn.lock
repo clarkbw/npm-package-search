@@ -3069,9 +3069,9 @@ jest-validate@^22.0.0:
     leven "^2.1.0"
     pretty-format "^22.0.0"
 
-jest-webextension-mock@^2.0.1:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/jest-webextension-mock/-/jest-webextension-mock-2.1.0.tgz#83e913f64b86a0cea4e62bfa17e0f3ca5540485e"
+jest-webextension-mock@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/jest-webextension-mock/-/jest-webextension-mock-3.0.0.tgz#f04feaae21ae3a7065ca657d3c7ca0911758c1c4"
 
 jest-worker@^22.0.0:
   version "22.0.0"
@@ -3079,7 +3079,7 @@ jest-worker@^22.0.0:
   dependencies:
     merge-stream "^1.0.1"
 
-jest@22.0.0:
+jest@^22.0.0:
   version "22.0.0"
   resolved "https://registry.yarnpkg.com/jest/-/jest-22.0.0.tgz#a75b19d4d43579bc9eb0ec1eff5a6296975c3757"
   dependencies:
