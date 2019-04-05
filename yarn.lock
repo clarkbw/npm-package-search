@@ -2886,6 +2886,11 @@ is-windows@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
 
+is-wsl@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/is-wsl/-/is-wsl-1.1.0.tgz#1f16e4aa22b04d1336b66188a66af3c600c3a66d"
+  integrity sha1-HxbkqiKwTRM2tmGIpmrzxgDDpm0=
+
 isarray@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-0.0.1.tgz#8a18acfca9a8f4177e09abfc6038939b05d1eedf"
@@ -4142,9 +4147,12 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-open@0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/open/-/open-0.0.5.tgz#42c3e18ec95466b6bf0dc42f3a2945c3f0cad8fc"
+opn@5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/opn/-/opn-5.4.0.tgz#cb545e7aab78562beb11aa3bfabc7042e1761035"
+  integrity sha512-YF9MNdVy/0qvJvDtunAOzFw9iasOQHpVthTCvGzxt61Il64AYSGdK+rYwld7NAfk9qJ7dt+hymBNSc9LNYS+Sw==
+  dependencies:
+    is-wsl "^1.1.0"
 
 optimist@^0.6.1:
   version "0.6.1"
@@ -4428,10 +4436,6 @@ please-upgrade-node@^3.1.1:
   dependencies:
     semver-compare "^1.0.0"
 
-pluralize@7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
-
 pn@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
@@ -4704,9 +4708,10 @@ regjsparser@^0.1.4:
   dependencies:
     jsesc "~0.5.0"
 
-release@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/release/-/release-4.0.0.tgz#99ea550af1835b8bca8715f9b616ea3006339f15"
+release@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/release/-/release-6.0.1.tgz#1b33b5961e8e08de14c691a585278a12ca7310bb"
+  integrity sha512-MUXpRvyVSoKBZKljqVNrL6TsbV5C8SoZuzHBP1I/4OQdeD3aQtTo6vNICRkElcLEHUk1r0Z/G/G3pLyREAUB9A==
   dependencies:
     "@octokit/rest" "15.2.6"
     args "4.0.0"
@@ -4723,9 +4728,8 @@ release@^4.0.0:
     github-username "4.1.0"
     inquirer "5.2.0"
     node-version "1.1.3"
-    open "0.0.5"
+    opn "5.4.0"
     ora "2.0.0"
-    pluralize "7.0.0"
     random-string "0.2.0"
     request "2.85.0"
     request-promise-native "1.0.5"
